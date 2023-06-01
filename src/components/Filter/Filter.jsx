@@ -5,13 +5,13 @@ import { LabelFilter } from './Filter.styled';
 import { Input } from 'components/ContactForm/ContactForm.styled';
 import { FiSearch } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilter } from 'redux/selectors';
+import { selectFilter } from 'redux/selectors';
 import { setFilter } from 'redux/filterSlice';
 
 // const idFilter = nanoid();
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
   const onFilter = evt => dispatch(setFilter(evt.target.value));
 
   return (

@@ -1,15 +1,28 @@
 // import propTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { List, Item } from './ContactList.syled';
 import { FiDelete } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors';
+import {
+  selectContacts,
+  selectError,
+  selectFilter,
+  selectIsLoading,
+} from 'redux/selectors';
 import { deleteContact } from 'redux/contactsSlice';
+import { fetchContacts } from 'redux/operations';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const filteredContacts = contacts?.filter(contact =>
     contact?.name?.toLowerCase().includes(filter.toLowerCase())

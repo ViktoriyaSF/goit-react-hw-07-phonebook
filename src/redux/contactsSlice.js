@@ -9,33 +9,35 @@ export const contactsInitialState = [
 ];
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: contactsInitialState,
+  // initialState: contactsInitialState,
+  initialState: { items: [], isLoading: false, error: null },
   reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      // {const contact = { ...action.payload, id: nanoid() };
-      // state.push(contact);},
-      // prepare(newContact) {
-      //   return {
-      //     payload: {
-      //       name: newContact.name,
-      //       number: newContact.numder,
-      //       id: nanoid(),
-      //     },
-      //   };
-      // },
+    fetchingInProgress(state) {
+      state.isLoading = true;
     },
-
-    deleteContact: (state, action) => {
-      state = state.filter(contact => contact.id !== action.payload);
-      return state;
-      // const index = state.findIndex(contact => contact.id !== action.payload);
-      // state.splice(index, 1);
+    fetchingSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
+    },
+    fetchingError(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
+  // addContact: {
+  //   reducer(state, action) {
+  //     state.items.push(action.payload);
+  //   },
+  // },
+
+  // deleteContact: (state, action) => {
+  //   state = state.filter(contact => contact.id !== action.payload);
+  //   return state;
+  // },
 });
 
 export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
+export const { fetchingInProgress, fetchingSuccess, fetchingError } =
+  contactsSlice.actions;

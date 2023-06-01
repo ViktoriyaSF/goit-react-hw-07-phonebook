@@ -2,13 +2,13 @@
 import React from 'react';
 import { Form, Input, Label, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import { addContact, contactsInitialState } from 'redux/contactsSlice';
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = evt => {
