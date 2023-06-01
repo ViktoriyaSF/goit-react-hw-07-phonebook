@@ -30,22 +30,29 @@ export const ContactList = () => {
   const onDelContact = id => {
     dispatch(deleteContact(id));
   };
-  if (!filteredContacts?.length) {
-    return <h1>No contacts found.</h1>;
-  }
+  // if (!filteredContacts?.length) {
+  //   return <h1>No contacts found.</h1>;
+  // }
   return (
-    <List>
-      {filteredContacts.map(({ id, name, number }) => (
-        <Item key={id}>
-          <p>{name}:</p>
-          <p>{number}</p>
+    <>
+      {isLoading && <p>Loading tasks...</p>}
+      {error && <p>{error}</p>}
+      {!filteredContacts?.length && !error && !isLoading && (
+        <h1>No contacts found.</h1>
+      )}
+      {/* <List>
+        {filteredContacts.map(({ id, name, number }) => (
+          <Item key={id}>
+            <p>{name}:</p>
+            <p>{number}</p>
 
-          <button type="button" onClick={() => onDelContact(id)}>
-            <FiDelete />
-          </button>
-        </Item>
-      ))}
-    </List>
+            <button type="button" onClick={() => onDelContact(id)}>
+              <FiDelete />
+            </button>
+          </Item>
+        ))}
+      </List> */}
+    </>
   );
 };
 // ContactList.propTypes = {
