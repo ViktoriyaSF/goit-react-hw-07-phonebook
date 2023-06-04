@@ -10,6 +10,7 @@ import {
   selectIsLoading,
 } from 'redux/selectors';
 import { deleteContact, fetchContacts } from 'redux/operations';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
@@ -27,7 +28,12 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <div>
+          <h2>Loading</h2>
+          <Loader />
+        </div>
+      )}
       {!contacts?.length && !error && !isLoading && <h2>No contacts found.</h2>}
 
       {/* якщо виникла помилка */}
