@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
 // import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 
 export const ContactForm = () => {
   const contacts = useSelector(selectContacts);

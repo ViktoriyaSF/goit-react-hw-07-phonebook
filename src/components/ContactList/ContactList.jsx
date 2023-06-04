@@ -1,21 +1,13 @@
 // import propTypes from 'prop-types';
 // import React, { useEffect } from 'react';
-import { createSelector } from '@reduxjs/toolkit';
+
 import { List, Item } from './ContactList.syled';
 import { FiDelete } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { selectFilteredContacts } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
 
 export const ContactList = () => {
-  const selectFilteredContacts = createSelector(
-    [selectContacts, selectFilter],
-    (contacts, filter) => {
-      return contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase())
-      );
-    }
-  );
-
   const contacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
 
@@ -27,9 +19,9 @@ export const ContactList = () => {
             <p>{name}:</p>
             <p>{number}</p>
 
-            {/* <button type="button" onClick={() => onDelContact(id)}>
+            <button type="button" onClick={() => dispatch(deleteContact(id))}>
               <FiDelete />
-            </button> */}
+            </button>
           </Item>
         ))}
       </List>
