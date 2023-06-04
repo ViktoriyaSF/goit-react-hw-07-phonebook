@@ -28,15 +28,15 @@ export const ContactList = () => {
   return (
     <>
       {isLoading && <p>Loading...</p>}
-      {!contacts?.length && !error && !isLoading && <h1>No contacts found.</h1>}
+      {!contacts?.length && !error && !isLoading && <h2>No contacts found.</h2>}
 
       {/* якщо виникла помилка */}
-      {error && <h1>{error}</h1>}
+      {error && <h2>{error}</h2>}
       <List>
-        {contacts.map(({ id, name, number }) => (
+        {contacts.map(({ id, name, phone }) => (
           <Item key={id}>
             <p>{name}:</p>
-            <p>{number}</p>
+            <p>{phone}</p>
 
             <button type="button" onClick={() => onDeleteContact(id)}>
               <FiDelete />
