@@ -4,6 +4,7 @@ export const List = styled.ul`
   padding: 0 15px;
   margin: 20px auto;
   gap: 10px;
+  font-size: 13px;
 `;
 
 export const Item = styled.li`
@@ -39,4 +40,8 @@ export const Item = styled.li`
       outline-offset: 7px;
     }
   }
+`;
+export const Phone = styled.p`
+  display: flex;
+  gap: 10px;
 `;

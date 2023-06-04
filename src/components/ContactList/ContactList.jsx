@@ -1,7 +1,7 @@
 // import propTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
-import { List, Item } from './ContactList.syled';
+import { List, Item, Phone } from './ContactList.syled';
 import { FiDelete } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -36,11 +36,12 @@ export const ContactList = () => {
         {contacts.map(({ id, name, phone }) => (
           <Item key={id}>
             <p>{name}:</p>
-            <p>{phone}</p>
-
-            <button type="button" onClick={() => onDeleteContact(id)}>
-              <FiDelete />
-            </button>
+            <Phone>
+              {phone}
+              <button type="button" onClick={() => onDeleteContact(id)}>
+                <FiDelete />
+              </button>
+            </Phone>
           </Item>
         ))}
       </List>
