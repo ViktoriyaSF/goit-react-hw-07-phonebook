@@ -39,11 +39,11 @@ export const ContactList = () => {
       {/* якщо виникла помилка */}
       {error && <h2>{error}</h2>}
       <List>
-        {contacts.map(({ id, name, phone }) => (
+        {contacts.map(({ id, name, number }) => (
           <Item key={id}>
             <p>{name}:</p>
             <Phone>
-              {phone}
+              {number}
               <button type="button" onClick={() => onDeleteContact(id)}>
                 <FiDelete />
               </button>
